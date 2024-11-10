@@ -1,28 +1,25 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios';
 import './App.css'
+import { ArticleList } from './components/ArticleList/ArticleList';
+import { fetchArticlesWithTopic } from './articles-api';
 
-const ArticleList = ({ items }) => (
-  <ul>
-  {items.map(({objectID, url, title}) => (
-    <li key={objectID}>
-      <a href={url} target="_blank" rel='noreferrer nooperer'>
-        {title}
-      </a>
-    </li>
-  ))}
-</ul>
-);
 function App() {
       const [articles, setArticles] = useState([]);
+      const [loading, setLoading] = useState(false);
+      const [error, setError] = useState(false);
 
   useEffect(() => {
     async function fetchArticles() {
-      const response = await axios.get(
-        "http://hn.algolia.com/api/v1/search?query=react"
-      );
-      console.log(response);
-      setArticles(response.data.hits);
+      try {
+        setLoading(true);
+        const data = await fetchArticlesWithTopic("react");
+        setArticles(data);
+      } catch (error) {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
     }
     fetchArticles();
   }, []);
@@ -30,9 +27,11 @@ function App() {
   return (
     <div>
       <h1>Latest articles</h1>
-      {articles.length > 0 && <ArticleList items={articles}/>
-
-      }
+      {loading && <p style={{ fontSize:20 }}>Loading data, please wait...</p>}
+      {error && (
+        <p>Whoops, something went wrong! Please try reloading this page!</p>
+      )}
+      {articles.length > 0 && <ArticleList items={articles} />}
     </div>
   );
 };
