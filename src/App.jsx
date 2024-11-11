@@ -4,7 +4,8 @@ import './App.css'
 import { ArticleList } from './components/ArticleList/ArticleList';
 import { fetchArticlesWithTopic } from './articles-api';
 import { SearchForm } from './components/SearchForm/SearchForm';
-
+import { Watch } from 'react-loader-spinner'
+;
 const App = () => {
       const [articles, setArticles] = useState([]);
       const [loading, setLoading] = useState(false);
@@ -45,7 +46,17 @@ const App = () => {
     <div>
 
       <SearchForm onSearch={handleSearch} />
-      {loading && <p style={{ fontSize:20 }}>Loading data, please wait...</p>}
+      {/* {loading && <p style={{ fontSize:20 }}>Loading data, please wait...</p>} */}
+       {loading && <Watch
+  visible={true}
+  height="50"
+  width="50"
+  radius="38"
+  color= "purple"
+  ariaLabel="watch-loading"
+  wrapperStyle={{}}
+  wrapperClass="loader"
+  />}
       {error && (
         <p>Whoops, something went wrong! Please try reloading this page!</p>
       )}
