@@ -1,0 +1,23 @@
+.form {
+    display: flex;
+    gap: 20px;
+    background-color: rgba(162, 162, 167, 0.863);
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.input {
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.button {
+    background-color: bisque;
+    font-weight: 400;
+    min-width: 150px;
+    &:hover {
+        outline: none;
+    }
+}
+
+
