@@ -1,7 +1,9 @@
-const ImageCard = ({images: url, alt_description}) => {
+import s from './ImageCard.module.css'
+const ImageCard = ({onClick, image, alt_description, likes}) => {
     return (
-        <div>
-           <img src={url} alt={alt_description} />
+        <div className={s.imgBox} onClick={onClick}>
+           <img className={s.img} src={image} alt={alt_description} width={400} />
+           <span className={s.likes}>Likes: <span className={s.likesData}>{likes}</span></span>
         </div>
 
     );  

@@ -1,9 +1,15 @@
+.header {
+    display: flex;
+    justify-content: center;
+}
 .form {
     display: flex;
+    justify-content: center;
     gap: 20px;
-    background-color: rgba(162, 162, 167, 0.863);
-    padding: 20px;
+    background-color: rgba(45, 42, 42, 0.526);
+    padding: 20px 40px;
     border-radius: 20px;
+    margin-bottom: 10px;
 }
 
 .input {

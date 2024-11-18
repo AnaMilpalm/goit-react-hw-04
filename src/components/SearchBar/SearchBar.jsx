@@ -1,20 +1,21 @@
 import { Field, Form, Formik } from 'formik';
 import s from './SearchBar.module.css';
-const SearchBar = (initialValues) => {
+const SearchBar = ({onSearch}) => {
 
     const handleSubmit = (values, actions) => {
-        console.log(values);
+        onSearch(values.query)
         actions.resetForm();
     }
     
     return (
-        <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+        <header className={s.header}>
+        <Formik initialValues={{ query: ''}} onSubmit={handleSubmit}>
             <Form className={s.form}>
                 <Field className={s.input} type="text" name="query" placeholder="Search images..." />
-                <button className={s.button} type='button'>Search images</button>
+                <button className={s.button} type='submit'>Search images</button>
             </Form>
-
         </Formik>
+        </header>
     )
 }
 

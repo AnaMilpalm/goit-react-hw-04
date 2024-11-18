@@ -1,0 +1,31 @@
+img {
+    display: block;
+    width: 100%;
+}
+
+.likes {
+    position: absolute;
+    background-color: rgba(45, 42, 42, 0.526);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: #fff;
+    font-weight: 200;
+    font-size: 14px;
+    text-align: start;
+    padding-left: 12px;
+    border-radius: 5px;
+  
+}
+.likesData {
+    font-size: 10px;
+}
+
+.imgBox {
+    width: 300px;
+    height: 200px;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+

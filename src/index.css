@@ -24,10 +24,9 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: rgba(211, 209, 206, 0.699); 
 }
 
 h1 {
@@ -66,3 +65,33 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 200ms ease-in-out;
+}
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+  background-color: #1a1a1a;
+}
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+.ReactModal__Content {
+  transform: translateY(-50px);
+}
+.ReactModal__Content--after-open {
+  transform: translateY(0);
+}
+.ReactModal__Content--before-close {
+  transform: translateY(50px);
+}
+
+
+
+
+
+
+
+
+
