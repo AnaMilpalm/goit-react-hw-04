@@ -8,8 +8,6 @@ import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import Modal from 'react-modal';
 import React from 'react';
 
-// Modal.setAppElement('#root'); 
-
 const App = () => {
   const [images, setImages] = useState([]);
   const [query, setQuery] = useState('');

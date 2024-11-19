@@ -5,7 +5,7 @@ Modal.setAppElement('#root');
 
 const ImageModal = ({ openModal, closeModal, image }) => {
   return (
-    <Modal 
+    <Modal  isOpen={openModal} 
     style={{
         overlay: {
           position: 'fixed',
@@ -31,7 +31,7 @@ const ImageModal = ({ openModal, closeModal, image }) => {
         }
       }}
     //   className={s.content}
-    //   isOpen={openModal} 
+     
     //   onRequestClose={closeModal} 
     //   overlayClassName={s.overlay}
     //   ariaHideApp={false}
@@ -43,8 +43,8 @@ const ImageModal = ({ openModal, closeModal, image }) => {
     >
       <button onClick={closeModal}>Close</button>
       {image && (
-        <div>
-          <img src={image.urls?.regular} alt={image.alt_description} style={{ width: '100%' }} />
+        <div className={s.ReactModal__Overlay}>
+          <img className={s.ReactModal__Overlay} src={image.urls?.regular} alt={image.alt_description} style={{ width: '100%' }} />
         </div>
       )}
     </Modal>

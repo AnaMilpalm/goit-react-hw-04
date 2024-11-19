@@ -73,6 +73,7 @@ button:focus-visible {
 .ReactModal__Overlay--after-open {
   opacity: 1;
   background-color: #1a1a1a;
+  z-index: 999;
 }
 .ReactModal__Overlay--before-close {
   opacity: 0;
@@ -88,7 +89,9 @@ button:focus-visible {
 }
 
 
-
+element.style {
+  background-color: #36343495;
+}
 
 
 

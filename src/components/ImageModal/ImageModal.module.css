@@ -15,7 +15,13 @@
 .reactModal {
     overflow: hidden;
 }
-
+.ReactModal__Overlay {
+    z-index: 999;
+    --after-open {
+        background-color: #1a1a1a !important;
+    }
+   
+  }
 
 .content {
     position: relative;
