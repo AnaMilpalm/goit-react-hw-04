@@ -7,7 +7,8 @@ import Loading from "./components/Loading/Loading";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import React from 'react';
 import ImageModal from "./components/ImageModal/ImageModal";
-import { ToastContainer, toast } from 'react-toastify';
+// import { ToastContainer, toast } from 'react-toastify';
+import toast, { Toaster } from 'react-hot-toast';
 
 const App = () => {
   const [images, setImages] = useState([]);
@@ -18,34 +19,32 @@ const App = () => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [selectedImage, setSelectedImage] = useState(null); 
   const [isError, setIsError] = useState(false);
-  const [isSearchAttempted, setIsSearchAttempted] = useState(false); 
+  // const [isSearchAttempted, setIsSearchAttempted] = useState(false); 
 
 
   const handleSearch = (newQuery) => {
-    setIsSearchAttempted(true);
+
 
     if(newQuery.trim() === '') {
-      toast.warning('Please fill a searching field!');
-      setIsSearchAttempted(true);
+      toast('Please fill a searching field!');
     } else {
       setQuery(newQuery);
       setPage(1);
       setImages([]);
-      setIsSearchAttempted(false);
      }
-     
   };
 
   useEffect(() => {
    
-    if (isSearchAttempted && !query) {
-      toast.warning('Please fill a searching field!'); 
-      setIsSearchAttempted(true);
-      return; 
-    }
-
+    // if (isSearchAttempted && !query) {
+    //   toast.warning('Please fill a searching field!'); 
+    //   setIsSearchAttempted(false);
+    //   return; 
+    // }
+    
     async function fetchData() {
       try {
+        
         setLoading(true);
         setIsError(false);
         const url = query
@@ -55,7 +54,7 @@ const App = () => {
         const response = await axios.get(url);
 
         if (response.data.results.length === 0 && page === 1) {
-          toast.warning('No images matching your search query. Please try again!');
+          toast('No images matching your search query. Please try again!');
         } else {
           setImages((prevImages) => [
             ...prevImages,
@@ -69,14 +68,14 @@ const App = () => {
         toast.error('Failed to load images! Try again!');
       } finally {
         setLoading(false);
-      
+        isError(false);
       }
     }
 
     if (query || page > 1) {
       fetchData();
     }
-  }, [query, page, isSearchAttempted]);
+  }, [query, page, isError]);
 
   const handleLoadMore = () => {
     setPage((prevPage) => prevPage + 1);
@@ -101,7 +100,31 @@ const App = () => {
       {hasMoreImages > 0 && !loading && (
         <LoadMoreBtn onLoadMore={handleLoadMore} />
       )}
-      <ToastContainer autoClose={3000} />
+      <Toaster
+  position="top-center"
+  reverseOrder={false}
+  gutter={8}
+  containerClassName=""
+  containerStyle={{}}
+  toastOptions={{
+    // Define default options
+    className: '',
+    duration: 5000,
+    style: {
+      background: '#363636',
+      color: '#fff',
+    },
+
+    // Default options for specific types
+    success: {
+      duration: 3000,
+      theme: {
+        primary: 'green',
+        secondary: 'black',
+      },
+    },
+  }}
+/>
       <ImageGallery images={images} openModal={openModal} />
       <ImageModal 
         image={selectedImage}
