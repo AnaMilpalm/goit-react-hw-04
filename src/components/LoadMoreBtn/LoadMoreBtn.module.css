@@ -2,3 +2,11 @@
     display: flex;
     justify-content: center;
 }
+.loadMore{
+    background-color: aliceblue;
+}
+.loadMore:hover,
+.loadMore:focus,
+.loadMore:active{
+    border: 2px dashed #fff;
+}

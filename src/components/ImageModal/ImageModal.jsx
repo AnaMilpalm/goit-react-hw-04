@@ -5,49 +5,45 @@ Modal.setAppElement('#root');
 
 const ImageModal = ({ openModal, closeModal, image }) => {
   return (
-    <Modal  isOpen={openModal} 
-    className={s.modal}
-    overlayClassName={s.overlay}
-    style={{
-        overlay: {
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundColor: 'rgba(0, 0, 0, 0.75)'
-        },
-        content: {
-          position: 'absolute',
-          top: '40px',
-          left: '40px',
-          right: '40px',
-          bottom: '40px',
-          border: '1px solid #ccc',
-          overflow: 'auto',
-          WebkitOverflowScrolling: 'touch',
-          borderRadius: '4px',
-          outline: 'none',
-          padding: '20px'
-        }
-      }}
-    //   className={s.content}
-     
-    //   onRequestClose={closeModal} 
-    //   overlayClassName={s.overlay}
-    //   ariaHideApp={false}
-    //   closeTimeoutMS={200}
-    //   contentLabel={alt_description}
-    // bodyOpenClassName={s.reactModal}
-    //   contentLabel={image?.alt_description || 'Image modal'}
-     
+    <Modal  
+    isOpen={openModal} // Якщо модальне вікно відкрите
+    onRequestClose={closeModal} // Закрити модалку при натисканні на бекдроп або кнопку
+    shouldCloseOnOverlayClick={true} // Модалка закривається при натисканні на бекдроп
+    overlayClassName={s.ReactModal__Overlay} // Клас для бекдропа
+    className={s.ReactModal__Content} // Клас для контенту модалки
+    contentLabel={image?.alt_description || 'Image modal'} // Опис для доступності
+    // style={{
+    //     overlay: {
+    //       position: 'fixed',
+    //       top: 0,
+    //       left: 0,
+    //       right: 0,
+    //       bottom: 0,
+    //       backgroundColor: 'rgba(0, 0, 0, 0.75)'
+    //     },
+    //     content: {
+    //       position: 'absolute',
+    //       top: '80px',
+    //       left: '80px',
+    //       right: '80px',
+    //       bottom: '80px',
+          
+    //       border: '1px solid #ccc',
+    //       overflow: 'auto',
+    //       WebkitOverflowScrolling: 'touch',
+    //       borderRadius: '4px',
+    //       outline: 'none',
+    //       padding: '20px',
+    //       color: 'black'
+    //     }
+    //   }}/
     >
-      <button onClick={closeModal}>Close</button>
-      {image && (
-        <div className={s.ReactModal__Overlay}>
-          <img className={s.ReactModal__Overlay} src={image.urls?.regular} alt={image.alt_description} style={{ width: '100%' }} />
-        </div>
-      )}
+      <button className={s.button} onClick={closeModal}>Close</button>
+        {image && (
+          <div className={s.modal}>
+            <img src={image.urls?.regular} alt={image.alt_description} style={{ width: '100%' }} />
+          </div>
+        )}
     </Modal>
   );
 };
