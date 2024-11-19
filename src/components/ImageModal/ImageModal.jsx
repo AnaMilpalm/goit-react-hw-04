@@ -6,6 +6,8 @@ Modal.setAppElement('#root');
 const ImageModal = ({ openModal, closeModal, image }) => {
   return (
     <Modal  isOpen={openModal} 
+    className={s.modal}
+    overlayClassName={s.overlay}
     style={{
         overlay: {
           position: 'fixed',
@@ -22,7 +24,6 @@ const ImageModal = ({ openModal, closeModal, image }) => {
           right: '40px',
           bottom: '40px',
           border: '1px solid #ccc',
-          background: '#fff',
           overflow: 'auto',
           WebkitOverflowScrolling: 'touch',
           borderRadius: '4px',
