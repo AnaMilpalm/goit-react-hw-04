@@ -19,12 +19,9 @@ const App = () => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [selectedImage, setSelectedImage] = useState(null); 
   const [isError, setIsError] = useState(false);
-  // const [isSearchAttempted, setIsSearchAttempted] = useState(false); 
 
 
   const handleSearch = (newQuery) => {
-
-
     if(newQuery.trim() === '') {
       toast('Please fill a searching field!');
     } else {
@@ -34,14 +31,7 @@ const App = () => {
      }
   };
 
-  useEffect(() => {
-   
-    // if (isSearchAttempted && !query) {
-    //   toast.warning('Please fill a searching field!'); 
-    //   setIsSearchAttempted(false);
-    //   return; 
-    // }
-    
+  useEffect(() => { 
     async function fetchData() {
       try {
         
@@ -68,14 +58,13 @@ const App = () => {
         toast.error('Failed to load images! Try again!');
       } finally {
         setLoading(false);
-        isError(false);
       }
     }
 
     if (query || page > 1) {
       fetchData();
     }
-  }, [query, page, isError]);
+  }, [query, page]);
 
   const handleLoadMore = () => {
     setPage((prevPage) => prevPage + 1);
