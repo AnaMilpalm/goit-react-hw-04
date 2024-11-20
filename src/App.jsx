@@ -7,7 +7,6 @@ import Loading from "./components/Loading/Loading";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import React from 'react';
 import ImageModal from "./components/ImageModal/ImageModal";
-// import { ToastContainer, toast } from 'react-toastify';
 import toast, { Toaster } from 'react-hot-toast';
 
 const App = () => {
@@ -18,7 +17,7 @@ const App = () => {
   const [totalResults, setTotalResults] = useState(0);
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [selectedImage, setSelectedImage] = useState(null); 
-  const [isError, setIsError] = useState(false);
+
 
 
   const handleSearch = (newQuery) => {
@@ -36,7 +35,7 @@ const App = () => {
       try {
         
         setLoading(true);
-        setIsError(false);
+     
         const url = query
           ? `https://api.unsplash.com/search/photos?query=${query}&page=${page}&per_page=12&client_id=s8iCvl-a7Zb2qE0wgVuqRid5TbMOqCqrEHbjrKvkTTE`
           : `https://api.unsplash.com/photos/?client_id=s8iCvl-a7Zb2qE0wgVuqRid5TbMOqCqrEHbjrKvkTTE`;
@@ -54,7 +53,7 @@ const App = () => {
         }
       } catch (error) {
         console.error("Error fetching data:", error);
-        setIsError(true);
+        // setIsError(true);
         toast.error('Failed to load images! Try again!');
       } finally {
         setLoading(false);
